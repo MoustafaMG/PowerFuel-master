@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "PowerFuel.API": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:12812;http://localhost:12813"
+    }
+  }
+}
