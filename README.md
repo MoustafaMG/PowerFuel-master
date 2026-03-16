@@ -114,6 +114,27 @@ You do **not** need to run `dotnet ef database update` manually unless you want 
    }
    ```
 
+3. **Stripe payments**
+
+   In `src/PowerFuel.API/appsettings.json`, set:
+
+   - `Stripe:SecretKey`: your Stripe secret key (starts with `sk_`)
+   - `Stripe:WebhookSecret`: webhook signing secret (starts with `whsec_`)
+   - `Stripe:Currency`: default currency (e.g. `usd`)
+
+   API endpoints:
+
+   - `POST /api/payments/orders/{orderId}/payment-intent` (Bearer)  
+     Returns a `client_secret` for the order’s Stripe PaymentIntent.
+   - `POST /api/payments/stripe/webhook` (Stripe)  
+     Processes `payment_intent.*` events to update payment status and confirm orders on success.
+
+   Local webhook testing (Stripe CLI):
+
+   ```bash
+   stripe listen --forward-to https://localhost:7xxx/api/payments/stripe/webhook
+   ```
+
 ## Run the API
 
 From the solution root:

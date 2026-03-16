@@ -1,4 +1,3 @@
-using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using PowerFuel.Application.DTOs.Payments;
@@ -107,7 +106,6 @@ public sealed class PaymentService : IPaymentService
         if (stripeEvent.Type.StartsWith("payment_intent.", StringComparison.OrdinalIgnoreCase))
         {
             var paymentIntent = stripeEvent.Data.Object as PaymentIntent
-                ?? JsonSerializer.Deserialize<PaymentIntent>(stripeEvent.Data.Object.ToJson())
                 ?? throw new InvalidOperationException("Invalid Stripe payload.");
 
             var payment = await _context.Payments
