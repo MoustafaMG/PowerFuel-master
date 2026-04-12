@@ -7,7 +7,6 @@ using PowerFuel.Infrastructure.Data;
 using Stripe;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
-using PowerFuel.API.Services.AiCoach;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,10 +51,6 @@ builder.Services.AddCors(options =>
         policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
     });
 });
-
-builder.Services.AddAiCoach(builder.Configuration);
-
-
 
 var app = builder.Build();
 
