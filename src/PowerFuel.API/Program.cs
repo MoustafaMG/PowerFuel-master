@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using PowerFuel.API.Services.FitnessCoach;
 using PowerFuel.Infrastructure;
 using PowerFuel.Infrastructure.Data;
 using Stripe;
@@ -44,6 +45,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization();
 
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddFitnessCoach(builder.Configuration);
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
